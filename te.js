@@ -8,5 +8,13 @@
 * http://en.wikipedia.org/wiki/MIT_License
 */
 window.te = (function () {
+  var te = function() {
+  };
 
+  te.supportsTemplate = function(el) {
+    el = typeof el !== 'undefined' ? el : document.createElement('template');
+    return 'content' in el;
+  };
+
+  return te;
 }());
