@@ -11,9 +11,12 @@ window.te = (function () {
   var te = function() {
   };
 
-  te.supportsTemplate = function() {
-    return 'content' in document.createElement('template');
+  var supportsTemplate =  function(el) {
+    el = typeof el !== 'undefined' ? el : document.createElement('template');
+    return 'content' in el;
   };
+
+  te.supportsTemplate = supportsTemplate;
 
   return te;
 }());
