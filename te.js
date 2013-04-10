@@ -8,33 +8,33 @@
 * http://en.wikipedia.org/wiki/MIT_License
 */
 window.te = (function () {
-  var templSel = 'template';
+  var templSel = 'template',
+      undefType = 'undefined';
 
   var te = function (parentSel, elSel, attrs) {
-    
-    if (typeof parentSel === 'undefined') {
-      return;
-    }
-    elSel = typeof elSel !== 'undefined' ? elSel : templSel;
-    attrs = typeof attrs !== 'undefined' ? attrs : [];
 
-    var templ = document.querySelector(elSel),
-        parent = document.querySelector(parentSel);
+    if (typeof parentSel !== undefType) {
+      elSel = typeof elSel !== undefType ? elSel : templSel;
+      attrs = typeof attrs !== undefType ? attrs : [];
 
-    if (templ !== null && parent !== null && supportsTemplate(templ)) {
-      for(var i = 0; i < attrs.length; i++) {
-        var childEl = templ.content.querySelector(attrs[i].s);
-        if (childEl !== null) {
-          childEl[attrs[i].a] = attrs[i].v;
+      var templ = document.querySelector(elSel),
+          parent = document.querySelector(parentSel);
+
+      if (templ !== null && parent !== null && supportsTemplate(templ)) {
+        for (var i = 0; i < attrs.length; i++) {
+          var childEl = templ.content.querySelector(attrs[i].s);
+          if (childEl !== null) {
+            childEl[attrs[i].a] = attrs[i].v;
+          }
         }
+        var newNode = templ.content.cloneNode(true);
+        parent.appendChild(newNode);
       }
-    var newNode = templ.content.cloneNode(true);
-      parent.appendChild(newNode);
     }
   };
 
-  var supportsTemplate =  function(el) {
-    el = typeof el !== 'undefined' ? el : document.createElement(templSel);
+  var supportsTemplate = function (el) {
+    el = typeof el !== undefType ? el : document.createElement(templSel);
     return 'content' in el;
   };
 
