@@ -23,4 +23,13 @@ To activate it use the following syntax
     </template> 
     </body> 
 
+To initialize the template without activation use the following syntax 
+ 
+    te.init('#mytemplate', [{'s':'img','a':'src','v':'1.png'}]); 
+    te.init('#mytemplate', [{'s':'.comment','a':'innerHTML','v':'Hello, World!'}]);
+
+After that you can activate the initialized template
+    
+    te('body', '#mytemplate');
+
 Inspired by [HTML's New Template Tag](http://www.html5rocks.com/en/tutorials/webcomponents/template/)
