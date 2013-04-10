@@ -10,8 +10,11 @@
 window.te = (function () {
   var te = function (elSel, parentSel, attrs) {
 
-    elSel = typeof elSel !== 'undefined' ? elSel : "template";
-    parentSel = typeof parentSel !== 'undefined' ? parentSel : "body";
+    var templSel = 'template',
+        defParentSel = 'body';
+
+    elSel = typeof elSel !== 'undefined' ? elSel : templSel;
+    parentSel = typeof parentSel !== 'undefined' ? parentSel : defParentSel;
     attrs = typeof attrs !== 'undefined' ? attrs : [];
 
     var templ = document.querySelector(elSel),
@@ -30,7 +33,7 @@ window.te = (function () {
   };
 
   var supportsTemplate =  function(el) {
-    el = typeof el !== 'undefined' ? el : document.createElement('template');
+    el = typeof el !== 'undefined' ? el : document.createElement(templSel);
     return 'content' in el;
   };
 
