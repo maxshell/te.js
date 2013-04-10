@@ -7,10 +7,10 @@ Simple Javascript library used to work with HTML5 templates
 	
 Having the template: 
 
-    => <template id="mytemplate">      
-         <img src="" alt="great image"> 
-         <div class="comment"></div> 
-       </template> 
+    <template id="mytemplate">      
+      <img src="" alt="great image"> 
+      <div class="comment"></div> 
+    </template> 
  
 To activate it use the following syntax 
  
