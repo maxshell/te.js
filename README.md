@@ -14,7 +14,7 @@ Having the template:
  
 To activate it use the following syntax 
  
-    te('#mytemplate', 'body', [{'s':'img','a':'src','v':'1.png'},{'s':'.comment','a':'innerHTML','v':'Hello, World!'}]); 
+    te('body', '#mytemplate', [{'s':'img','a':'src','v':'1.png'},{'s':'.comment','a':'innerHTML','v':'Hello, World!'}]); 
     => 
     <body> 
     <template id="mytemplate"> 
