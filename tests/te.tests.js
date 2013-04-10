@@ -38,3 +38,12 @@ test("Should activate template", function() {
   equal(document.getElementById('myimg').getAttribute('src'), '1.png');
   equal(document.getElementById('mydiv').innerHTML, 'Hello, World!');
 });
+
+test("Should check that template is disabled by default", function() {
+  // arrange
+  // act
+
+  // assert
+  equal(document.getElementById('myimg'), null);
+  equal(document.getElementById('mydiv'), null);
+});
