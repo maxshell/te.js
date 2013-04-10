@@ -1,4 +1,4 @@
-## el.js
+## te.js
 
 Simple Javascript library used to work with HTML5 templates	
 (see [W3C Specification](https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/templates/index.html)) 
