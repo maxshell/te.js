@@ -39,11 +39,22 @@ test("Should activate template", function() {
   equal(document.getElementById('mydiv').innerHTML, 'Hello, World!');
 });
 
-test("Should check that template is disabled by default", function() {
+test("Check that template is disabled by default", function() {
   // arrange
   // act
 
   // assert
   equal(document.getElementById('myimg'), null);
   equal(document.getElementById('mydiv'), null);
+});
+
+test("Should activate template without parameters", function() {
+  // arrange
+  var elSel = "#mytemplate",
+      parentSel = "#qunit-fixture";
+  // act
+  te(elSel, parentSel);
+  // assert
+  notEqual(document.getElementById('myimg'), null);
+  notEqual(document.getElementById('mydiv'), null);
 });
