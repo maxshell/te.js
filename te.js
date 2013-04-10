@@ -8,11 +8,10 @@
 * http://en.wikipedia.org/wiki/MIT_License
 */
 window.te = (function () {
-  var te = function (elSel, parentSel, attrs) {
-
-    var templSel = 'template',
+  var templSel = 'template',
         defParentSel = 'body';
 
+  var te = function (elSel, parentSel, attrs) {
     elSel = typeof elSel !== 'undefined' ? elSel : templSel;
     parentSel = typeof parentSel !== 'undefined' ? parentSel : defParentSel;
     attrs = typeof attrs !== 'undefined' ? attrs : [];
