@@ -26,3 +26,15 @@ test("Should verify using 'document' that templates are supported", function() {
   // assert
   equal(actual, expected);
 });
+
+test("Should activate template", function() {
+  // arrange
+  var elSel = "#mytemplate",
+      parentSel = "#qunit-fixture",
+      attrs = [{'s':'img','a':'src','v':'1.png'},{'s':'.comment','a':'innerHTML','v':'Hello, World!'}];
+  // act
+  te(elSel, parentSel, attrs);
+  // assert
+  equal(document.getElementById('myimg').getAttribute('src'), '1.png');
+  equal(document.getElementById('mydiv').innerHTML, 'Hello, World!');
+});
