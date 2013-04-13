@@ -24,7 +24,7 @@ var te = (function (document) {
                 isModel = false,
                 result = null;
             if (!(attrs instanceof Array)) {
-                isModel = true;  
+                isModel = true; 
             }
             if (templ !== null && supportsTemplate(templ)) {
                 if (!isModel) {
@@ -34,11 +34,12 @@ var te = (function (document) {
                             childEl[attrs[i].a] = attrs[i].v;
                         }
                     }
-                }
-                else {
+                } else {
                     templInner = templ.innerHTML;
-                    for(i in attrs) {
-                        templInner = templInner.replace('{{'+i+'}}', attrs[i]);
+                    for (i in attrs) {
+                        if (attrs.hasOwnProperty(i)) {
+                            templInner = templInner.replace('{{' + i + '}}', attrs[i]);
+                        }
                     }
                     templ.innerHTML = templInner;
                 }
