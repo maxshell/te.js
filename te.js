@@ -20,13 +20,27 @@ var te = (function (document) {
             var templ = document.querySelector(elSel),
                 i,
                 childEl,
+                templInner,
+                isModel = false,
                 result = null;
+            if (!(attrs instanceof Array)) {
+                isModel = true;  
+            }
             if (templ !== null && supportsTemplate(templ)) {
-                for (i = 0; i < attrs.length; i = i + 1) {
-                    childEl = templ.content.querySelector(attrs[i].s);
-                    if (childEl !== null) {
-                        childEl[attrs[i].a] = attrs[i].v;
+                if (!isModel) {
+                    for (i = 0; i < attrs.length; i = i + 1) {
+                        childEl = templ.content.querySelector(attrs[i].s);
+                        if (childEl !== null) {
+                            childEl[attrs[i].a] = attrs[i].v;
+                        }
                     }
+                }
+                else {
+                    templInner = templ.innerHTML;
+                    for(i in attrs) {
+                        templInner = templInner.replace('{{'+i+'}}', attrs[i]);
+                    }
+                    templ.innerHTML = templInner;
                 }
                 result = templ;
             }
