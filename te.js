@@ -33,7 +33,7 @@ var te = (function (document) {
     var templSel = 'template',
         supportsTemplate = function (el) {
             el = el !== undefined ? el : document.createElement(templSel);
-            return el.hasOwnProperty('content');
+            return el.content !== undefined;
         },
         init = function (elSel, attrs) {
             elSel = elSel !== undefined ? elSel : templSel;
