@@ -27,6 +27,10 @@ test("Should verify using 'document' that templates are supported", function () 
     equal(actual, expected);
 });
 
+if (!('content' in document.createElement('template'))) {
+    test = QUnit.skip;
+}
+
 test("Should activate template", function () {
     // arrange
     var parentSel = "#qunit-fixture",
