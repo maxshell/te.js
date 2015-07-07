@@ -8,13 +8,17 @@ Simple Javascript library used to work with HTML5 templates
 Having the template: 
 
     <template id="mytemplate">      
-      <img src="" alt="great image"> 
+      <img src="" alt="great image /> 
       <div class="comment"></div> 
     </template> 
  
 To activate it use the following syntax 
  
-    te('body', '#mytemplate', [{'s':'img','a':'src','v':'1.png'},{'s':'.comment','a':'innerHTML','v':'Hello, World!'}]); 
+    te(
+      'body',
+      '#mytemplate',
+      [{'s':'img','a':'src','v':'1.png'},{'s':'.comment','a':'innerHTML','v':'Hello, World!'}]
+      ); 
     => 
     <body> 
     <template id="mytemplate"> 
@@ -41,7 +45,11 @@ The templates that contain some simple model could also be activated:
 
 To activate it use the following syntax 
  
-    te('body', '#templatemodel', {'altvalue':'Cool image', 'srcvalue':'2.png', 'textvalue':'Hello, World!'}); 
+    te(
+      'body',
+      '#templatemodel',
+      {'altvalue':'Cool image', 'srcvalue':'2.png', 'textvalue':'Hello, World!'}
+      ); 
     => 
     <body> 
     <template id="templatemodel">
@@ -52,7 +60,10 @@ To activate it use the following syntax
 
 The similar approach with initialization/activation is also supported: 
 
-    te.init('#templatemodel', {'altvalue':'Cool image', 'srcvalue':'2.png', 'textvalue':'Hello, World!'}); 
+    te.init(
+      '#templatemodel',
+      {'altvalue':'Cool image', 'srcvalue':'2.png', 'textvalue':'Hello, World!'}
+      ); 
     te('body', '#templatemodel');
 
 Finally you can create the template that contains model values and initialize it using 
