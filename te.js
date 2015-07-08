@@ -28,9 +28,10 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 For more information, please refer to <http://unlicense.org/>
 */
-var te = (function (document) {
+(function (global) {
     'use strict';
-    var templSel = 'template',
+    var document = global.document,
+        templSel = 'template',
         supportsTemplate = function (el) {
             el = el !== undefined ? el : document.createElement(templSel);
             return el.content !== undefined;
@@ -82,5 +83,10 @@ var te = (function (document) {
     te.init = init;
     te.supportsTemplate = supportsTemplate;
 
-    return te;
-}(document));
+    global.te = te;
+    if (typeof define === 'function' && define.amd) {
+        define('te', [], function() {
+            return te;
+    });
+  }     
+}(this));
