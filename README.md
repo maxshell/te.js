@@ -1,7 +1,7 @@
 ## te.js
 
 Simple Javascript library used to work with HTML5 templates	
-(see [W3C Specification](https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/templates/index.html)) 
+(see [W3C Specification](http://www.w3.org/TR/html5/scripting-1.html#the-template-element)) 
  
 ## Examples: 
 	
