@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Te.js by maxshell</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Te.js</h1>
+      <h2 class="project-tagline">Simple library to work with HTML5 templates</h2>
+      <a href="https://github.com/maxshell/te.js" class="btn">View on GitHub</a>
+      <a href="https://github.com/maxshell/te.js/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/maxshell/te.js/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h2>
+<a id="tejs" class="anchor" href="#tejs" aria-hidden="true"><span class="octicon octicon-link"></span></a>te.js</h2>
+
+<p>Simple Javascript library used to work with HTML5 templates 
+(see <a href="http://www.w3.org/TR/html5/scripting-1.html#the-template-element">W3C Specification</a>) </p>
+
+<h2>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Examples:</h2>
+
+<p>There is the template that contains properties of simple model: </p>
+
+<pre><code>&lt;template id="templatemodel"&gt;
+  &lt;img id="imgmodel" alt="{{altvalue}}" src="{{srcvalue}}" /&gt; 
+  &lt;div id="divmodel" class="commentmodel"&gt;{{textvalue}}&lt;/div&gt; 
+&lt;/template&gt; 
+</code></pre>
+
+<p>To activate it use the following syntax: </p>
+
+<pre><code>te(
+  'body',
+  '#templatemodel',
+  {'altvalue':'Cool image', 'srcvalue':'2.png', 'textvalue':'Hello, World!'}
+  ); 
+=&gt; 
+&lt;body&gt; 
+&lt;template id="templatemodel"&gt;
+  &lt;img id="imgmodel" alt="Cool image" src="2.png" /&gt; 
+  &lt;div id="divmodel" class="commentmodel"&gt;Hello, World!&lt;/div&gt; 
+&lt;/template&gt;  
+&lt;/body&gt;
+</code></pre>
+
+<ul>
+<li>'body' - CSS-selector of the DOM element to which the template will be appended</li>
+<li>'#templatemodel' - CSS-selector of the template</li>
+<li>options object - {'placeholder-name':'value'}</li>
+</ul>
+
+<p>Activation means that placeholders are filled with provided values and
+whole template is appended to existing DOM element ("template" element itself
+is ommited from resulting markup).</p>
+
+<p>The one is also able to initialize the template without activation: </p>
+
+<pre><code>te.init(
+  '#templatemodel',
+  {'altvalue':'Cool image', 'srcvalue':'2.png', 'textvalue':'Hello, World!'}
+  ); 
+te('body', '#templatemodel');
+</code></pre>
+
+<p>Having another example that just has empty attributes and node values: </p>
+
+<pre><code>&lt;template id="mytemplate"&gt;      
+  &lt;img src="" alt="great image /&gt; 
+  &lt;div class="comment"&gt;&lt;/div&gt; 
+&lt;/template&gt; 
+</code></pre>
+
+<p>To activate it you need to provide an array of options in the following format:</p>
+
+<pre><code>te(
+  'body',
+  '#mytemplate',
+  [{'s':'img','a':'src','v':'1.png'},{'s':'.comment','a':'innerHTML','v':'Hello, World!'}]
+  ); 
+=&gt; 
+&lt;body&gt; 
+&lt;template id="mytemplate"&gt; 
+  &lt;img id="myimg" src="1.png" alt="great image"&gt; 
+  &lt;div id="mydiv" class="comment"&gt;Hello, World!&lt;/div&gt; 
+&lt;/template&gt; 
+&lt;/body&gt;
+</code></pre>
+
+<ul>
+<li>{'s':'CSS-selector of element', 'a':'attribute name', 'v':'value'}</li>
+<li>To add child element use 'innerHTML' value for 'a' key </li>
+</ul>
+
+<p>The approach with initialization/activation is also supported: </p>
+
+<pre><code>te.init('#mytemplate', [{'s':'img','a':'src','v':'1.png'}]); 
+te.init('#mytemplate', [{'s':'.comment','a':'innerHTML','v':'Hello, World!'}]);
+</code></pre>
+
+<p>After that you can activate the initialized template:</p>
+
+<pre><code>te('body', '#mytemplate');
+</code></pre>
+
+<p>Finally the one could create the template that contains model values and initialize it using 
+two different types of the attributes: </p>
+
+<pre><code>&lt;template id="templatemixed"&gt;
+  &lt;img id="imgmixed" alt="{{altvalue}}" src="" /&gt; 
+  &lt;div id="divmixed" class="commentmixed"&gt;&lt;/div&gt; 
+&lt;/template&gt; 
+
+te.init('#templatemixed', {'altvalue':'Cool image'}); 
+te.init('#templatemixed', [{ 's': '#imgmixed', 'a': 'src', 'v': '2.png' }]); 
+te.init('#templatemixed', [{ 's': '.commentmixed', 'a': 'innerHTML', 'v': 'Hello, World!' }]); 
+
+te('body', '#templatemixed'); 
+=&gt; 
+&lt;body&gt; 
+&lt;template id="templatemixed"&gt;
+  &lt;img id="imgmixed" alt="Cool image" src="2.png" /&gt; 
+  &lt;div id="divmixed" class="commentmixed"&gt;Hello, World!&lt;/div&gt; 
+&lt;/template&gt;  
+&lt;/body&gt; 
+</code></pre>
+
+<p>Inspired by <a href="http://www.html5rocks.com/en/tutorials/webcomponents/template/">HTML's New Template Tag</a></p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/maxshell/te.js">Te.js</a> is maintained by <a href="https://github.com/maxshell">maxshell</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
+
